@@ -22,10 +22,9 @@ export function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
+  const leftRef = useRef<HTMLDivElement>(null)
 
   if (session) return <Navigate to="/dashboard" replace />
-
-  const leftRef = useRef<HTMLDivElement>(null)
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = leftRef.current
