@@ -533,63 +533,10 @@ export function FormView({ onCancel, onSave }: Props) {
                       marginLeft: 'auto',
                     }}
                   >
-                    gerar PDF + envio
+                    gerar PDF
                   </span>
                 </label>
               </div>
-            </div>
-          </div>
-
-          <div className="aside-card">
-            <div className="aside-head">Canal de Envio</div>
-            <div className="aside-body" style={{ padding: '10px 6px' }}>
-              <label
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '8px 12px',
-                  cursor: 'pointer',
-                }}
-              >
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  style={{ accentColor: 'var(--gray-900)' }}
-                />
-                <span style={{ fontSize: 13 }}>E-mail principal</span>
-              </label>
-              <label
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '8px 12px',
-                  cursor: 'pointer',
-                }}
-              >
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  style={{ accentColor: 'var(--gray-900)' }}
-                />
-                <span style={{ fontSize: 13 }}>WhatsApp</span>
-              </label>
-              <label
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '8px 12px',
-                  cursor: 'pointer',
-                }}
-              >
-                <input
-                  type="checkbox"
-                  style={{ accentColor: 'var(--gray-900)' }}
-                />
-                <span style={{ fontSize: 13 }}>Link para assinatura digital</span>
-              </label>
             </div>
           </div>
 
@@ -599,7 +546,7 @@ export function FormView({ onCancel, onSave }: Props) {
               style={{ justifyContent: 'center' }}
               onClick={onSave}
             >
-              Salvar e Enviar
+              Salvar Proposta
             </button>
             <button
               className="btn btn-secondary"
