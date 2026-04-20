@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { ListView } from './projetos/ListView'
 import { DetailView } from './projetos/DetailView'
+import { FormView } from './projetos/FormView'
 import { projects } from './projetos/data'
 import { BackLink } from '../components/BackLink'
 
-type View = 'list' | 'detail'
+type View = 'list' | 'detail' | 'form'
 
 export function Projetos() {
   const [view, setView] = useState<View>('list')
@@ -16,10 +17,13 @@ export function Projetos() {
   }
 
   const selected = projects.find((p) => p.id === selectedId) ?? projects[0]
-  const crumbs =
-    view === 'list' ? ['Projetos'] : ['Projetos', selected.name]
-  const title = view === 'list' ? 'Projetos' : selected.name
-  const sub = view === 'list' ? 'gestão e cronogramas' : selected.client
+
+  const { crumbs, title, sub } =
+    view === 'list'
+      ? { crumbs: ['Projetos'], title: 'Projetos', sub: 'gestão e cronogramas' }
+      : view === 'form'
+      ? { crumbs: ['Projetos', 'Novo Projeto'], title: 'Novo Projeto', sub: 'preencha os dados' }
+      : { crumbs: ['Projetos', selected.name], title: selected.name, sub: selected.client }
 
   return (
     <>
@@ -51,7 +55,7 @@ export function Projetos() {
             placeholder="Buscar projeto, cliente, fase…"
           />
           <button className="btn btn-secondary btn-sm">Exportar</button>
-          <button className="btn btn-primary btn-sm">
+          <button className="btn btn-primary btn-sm" onClick={() => go('form')}>
             <IconPlus /> Novo Projeto
           </button>
         </div>
@@ -65,6 +69,9 @@ export function Projetos() {
               go('detail')
             }}
           />
+        )}
+        {view === 'form' && (
+          <FormView onCancel={() => go('list')} onSave={() => go('list')} />
         )}
         {view === 'detail' && <DetailView onBack={() => go('list')} />}
       </div>

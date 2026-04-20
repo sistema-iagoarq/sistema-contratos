@@ -2319,6 +2319,46 @@ select.input { appearance: none; padding-right: 32px; cursor: pointer; }
 
 .form-row.auto { grid-template-columns: 200px 1fr 140px 140px 40px; align-items: end; }
 
+/* Phase selector (form Novo Projeto) */
+.phase-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+.phase-check {
+  border: 2px solid var(--gray-200); border-radius: 8px; padding: 14px;
+  cursor: pointer; position: relative; transition: all 0.12s;
+  display: flex; flex-direction: column; gap: 8px; background: transparent;
+}
+.phase-check:hover { border-color: var(--gray-400); }
+.phase-check.selected.phase-1 { border-color: var(--f1); background: var(--f1-bg); }
+.phase-check.selected.phase-2 { border-color: var(--f2); background: var(--f2-bg); }
+.phase-check.selected.phase-3 { border-color: var(--f3); background: var(--f3-bg); }
+.phase-check.selected.phase-4 { border-color: var(--f4); background: var(--f4-bg); }
+.phase-check.selected.phase-5 { border-color: var(--f5); background: var(--f5-bg); }
+.phase-check.selected.phase-6 { border-color: var(--f6); background: var(--f6-bg); }
+.phase-check-head { display: flex; align-items: center; justify-content: space-between; }
+.phase-check-num {
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 10px; background: var(--gray-100); color: var(--gray-700);
+}
+.phase-check.selected.phase-1 .phase-check-num { background: var(--f1); color: var(--white); }
+.phase-check.selected.phase-2 .phase-check-num { background: var(--f2); color: var(--white); }
+.phase-check.selected.phase-3 .phase-check-num { background: var(--f3); color: var(--white); }
+.phase-check.selected.phase-4 .phase-check-num { background: var(--f4); color: var(--white); }
+.phase-check.selected.phase-5 .phase-check-num { background: var(--f5); color: var(--white); }
+.phase-check.selected.phase-6 .phase-check-num { background: var(--f6); color: var(--white); }
+.phase-check-check {
+  width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--gray-300);
+  display: flex; align-items: center; justify-content: center; transition: all 0.12s;
+}
+.phase-check.selected .phase-check-check { background: var(--gray-900); border-color: var(--gray-900); }
+.phase-check.selected .phase-check-check::after {
+  content: ''; width: 10px; height: 6px;
+  border-left: 2px solid var(--white); border-bottom: 2px solid var(--white);
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+.phase-check-name { font-size: 13px; font-weight: 500; color: var(--gray-900); }
+.phase-check-desc { font-size: 11px; color: var(--gray-500); line-height: 1.4; }
+.phase-check-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px; }
+.phase-check-fields .input { padding: 6px 10px; font-size: 11px; }
+
 /* Line items table (investimento) */
 .items-table {
   border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px;
