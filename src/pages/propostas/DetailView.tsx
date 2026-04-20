@@ -360,6 +360,13 @@ function OverviewPanel({ onEdit }: { onEdit: () => void }) {
             }}
           >
             <button
+              className="btn btn-primary btn-sm"
+              style={{ justifyContent: 'flex-start' }}
+              onClick={exportProposalPdf}
+            >
+              <IconDownloadArrow /> Exportar PDF
+            </button>
+            <button
               className="btn btn-secondary btn-sm"
               style={{ justifyContent: 'flex-start' }}
             >
@@ -1107,6 +1114,54 @@ const svgProps = {
   strokeLinecap: 'round' as const,
   strokeLinejoin: 'round' as const,
 }
+async function exportProposalPdf() {
+  try {
+    const res = await fetch('/api/propostas/pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client: { name: 'Hotel Mirante', address: '' },
+        pricing: {
+          total: 456000,
+          discountPctAVista: 5,
+          installments: 6,
+          installmentValue: 76000,
+        },
+      }),
+    })
+    if (!res.ok) {
+      alert(`Falha ao gerar PDF (HTTP ${res.status}).`)
+      return
+    }
+    const blob = await res.blob()
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank', 'noopener,noreferrer')
+    setTimeout(() => URL.revokeObjectURL(url), 60_000)
+  } catch (err) {
+    console.error(err)
+    alert('Erro ao gerar PDF. Veja o console.')
+  }
+}
+
+function IconDownloadArrow() {
+  return (
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  )
+}
+
 function IconFile() {
   return (
     <svg {...svgProps}>
